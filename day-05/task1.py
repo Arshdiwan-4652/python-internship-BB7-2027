@@ -1,17 +1,14 @@
-class Car:
-    def _init_(self, brand, model, year):
-        self.brand = brand
-        self.model = model
-        self.year = year
+student_name = "Aisha"
+student_age = 20
+favorite_subject = "Python"
 
-    def display_info(self):
-        print(f"My car is {self.brand} {self.model}, manufactured in {self.year}.")
+first_color, second_color = "blue", "green"
+first_number = second_number = 10
 
-
-car1 = Car("Toyota", "Fortuner", 2024)
-car2 = Car("BMW", "X5", 2023)
-car3 = Car("Honda", "City", 2022)
-
-car1.display_info()
-car2.display_info()
-car3.display_info()
+print("Student name:", student_name)
+print("Student age:", student_age)
+print("Favorite subject:", favorite_subject)
+print("First color:", first_color)
+print("Second color:", second_color)
+print("First number:", first_number)
+print("Second number:", second_number)
