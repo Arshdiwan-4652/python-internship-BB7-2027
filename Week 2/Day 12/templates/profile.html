@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 16px;
+            background: #f1f5f9;
+            color: #1e293b;
+            font-family: Arial, sans-serif;
+        }
+
+        .dashboard {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 32px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #1d4ed8;
+        }
+
+        .age {
+            color: #475569;
+        }
+
+        .eligibility {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .eligible {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .not-eligible {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <main class="dashboard">
+        <h1>Profile Dashboard: {{ name }}</h1>
+        <p class="age">Age: {{ age }}</p>
+
+        {% if age >= 18 %}
+        <p class="eligibility eligible">Eligible to Vote</p>
+        {% else %}
+        <p class="eligibility not-eligible">Not Eligible to Vote</p>
+        {% endif %}
+
+        <h2>Favorite Programming Languages</h2>
+        <ul>
+            {% for language in languages %}
+            <li>{{ language }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
