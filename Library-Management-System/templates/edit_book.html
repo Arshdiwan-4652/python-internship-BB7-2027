@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Edit Book | Library{% endblock %}
+{% block page_title %}Edit Book{% endblock %}
+{% block content %}
+<section class="panel form-panel">
+    <form method="post" class="form-grid">
+        <label>Book Title <input type="text" name="title" value="{{ book.title }}" required></label>
+        <label>Author Name <input type="text" name="author" value="{{ book.author }}" required></label>
+        <label>Category <input type="text" name="category" value="{{ book.category or '' }}"></label>
+        <label>ISBN <input type="text" name="isbn" value="{{ book.isbn or '' }}"></label>
+        <label>Quantity <input type="number" name="quantity" min="0" value="{{ book.quantity }}" required></label>
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Save Changes</button>
+            <a class="btn btn-secondary" href="{{ url_for('books') }}">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

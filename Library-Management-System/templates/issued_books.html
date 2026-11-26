@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Issued Books | Library{% endblock %}
+{% block page_title %}Issue History{% endblock %}
+{% block content %}
+<div class="toolbar">
+    <form method="get" class="search-form">
+        <select name="status">
+            <option value="">All Statuses</option>
+            <option value="Issued" {% if status == 'Issued' %}selected{% endif %}>Issued</option>
+            <option value="Returned" {% if status == 'Returned' %}selected{% endif %}>Returned</option>
+        </select>
+        <button class="btn btn-primary" type="submit">Filter</button>
+    </form>
+</div>
+<section class="panel">
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Book</th><th>Student</th><th>Issue Date</th><th>Return Date</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+            {% for issue in issues %}
+                <tr>
+                    <td>{{ issue.id }}</td><td>{{ issue.book_title }}</td>
+                    <td>{{ issue.student_name }}<small>{{ issue.student_email }}</small></td>
+                    <td>{{ issue.issue_date }}</td><td>{{ issue.return_date or "-" }}</td>
+                    <td><span class="status {{ issue.status|lower }}">{{ issue.status }}</span></td>
+                    <td>
+                        {% if issue.status == 'Issued' %}
+                            <form method="post" action="{{ url_for('return_book', issue_id=issue.id) }}" onsubmit="return confirm('Return this book?');">
+                                <button class="btn btn-small" type="submit">Return</button>
+                            </form>
+                        {% else %}-{% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="7" class="empty">No issue records found.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Students | Library{% endblock %}
+{% block page_title %}Student Management{% endblock %}
+{% block content %}
+<div class="toolbar">
+    <form method="get" class="search-form">
+        <input type="text" name="search" value="{{ search }}" placeholder="Search name, email, or course">
+        <button class="btn btn-primary" type="submit">Search</button>
+        {% if search %}<a class="btn btn-secondary" href="{{ url_for('students') }}">Clear</a>{% endif %}
+    </form>
+    <a class="btn btn-primary" href="{{ url_for('add_student') }}">Add New Student</a>
+</div>
+<section class="panel">
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Course</th></tr></thead>
+            <tbody>
+            {% for student in students %}
+                <tr><td>{{ student.id }}</td><td>{{ student.name }}</td><td>{{ student.email }}</td><td>{{ student.phone or "-" }}</td><td>{{ student.course }}</td></tr>
+            {% else %}
+                <tr><td colspan="5" class="empty">No students found{% if search %} for "{{ search }}"{% endif %}.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

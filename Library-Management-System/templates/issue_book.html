@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Issue Book | Library{% endblock %}
+{% block page_title %}Issue a Book{% endblock %}
+{% block content %}
+<section class="panel form-panel">
+    <form method="post" class="form-grid">
+        <label>Student
+            <select name="student_id" required>
+                <option value="">Select a student</option>
+                {% for student in students %}
+                    <option value="{{ student.id }}">{{ student.name }} - {{ student.course }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>Available Book
+            <select name="book_id" required>
+                <option value="">Select a book</option>
+                {% for book in books %}
+                    <option value="{{ book.id }}">{{ book.title }} ({{ book.available }} available)</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>Issue Date <input type="date" name="issue_date" value="{{ today }}" required></label>
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Issue Book</button>
+            <a class="btn btn-secondary" href="{{ url_for('issued_books') }}">View Issued Books</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

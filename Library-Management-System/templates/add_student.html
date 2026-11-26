@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Add Student | Library{% endblock %}
+{% block page_title %}Add New Student{% endblock %}
+{% block content %}
+<section class="panel form-panel">
+    <form method="post" class="form-grid">
+        <label>Student Name <input type="text" name="name" required></label>
+        <label>Email <input type="email" name="email" required></label>
+        <label>Phone Number <input type="tel" name="phone"></label>
+        <label>Course <input type="text" name="course" required></label>
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Add Student</button>
+            <a class="btn btn-secondary" href="{{ url_for('students') }}">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}
